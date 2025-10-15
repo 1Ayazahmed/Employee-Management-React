@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+#hero-right-container::-webkit-scrollbar{
+    display: none;
+
+}

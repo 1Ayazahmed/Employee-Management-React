@@ -1,36 +1,40 @@
-import React from 'react'
-import Section1 from './components/Section1/Section1.jsx'
-import Section2 from './components/Section2/Section2.jsx'
-
+import Login from "./components/Auth/Login";
+import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard"
+import AdminDashboard from "./components/Dashboard/AdminDashboard"
+import "./index.css";
+import { useEffect, useState } from "react";
+// import { setLocalStorage } from "./utils/LocalStorage"
+// localStorage.clear();
 const App = () => {
-  const HeroRightImageData= [
-    {
-      img:"https://images.unsplash.com/photo-1606216769800-e3532cf98bbe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&q=60&w=500",
-      intro:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur eaque velit rerum! Ex, voluptate ratione. Laboriosam reprehenderit ut possimus sed???",
-      tag:"Satisfied"
-     },
-       {
-      img:"https://images.unsplash.com/photo-1637689810282-4692c7677feb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
-      intro:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur eaque velit rerum! Ex, voluptate ratione. Laboriosam reprehenderit ut possimus sed?",
-      tag:"UnderServed"
-     },
-       {
-      img:"https://plus.unsplash.com/premium_photo-1661515449711-ace459054f78?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&q=60&w=500",
-      intro:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur eaque velit rerum! Ex, voluptate ratione. Laboriosam reprehenderit ut possimus sed?",
-      tag:"UnderBanked"
-     },
-     {
-      img:"https://plus.unsplash.com/premium_photo-1661310261765-f0481298ac4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE2fHx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=500",
-      intro:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur eaque velit rerum! Ex, voluptate ratione. Laboriosam reprehenderit ut possimus sed?",
-      tag:"UnderProcess"
-     }
-  ]
+  const [user, setUser] = useState(null);
+
+  const handleLogin = (email, password) => {
+    if (email == "admin@me.com" && password == "123") {
+      setUser("admin");
+      console.log("Admin is logged in");
+    } else if (email == "usser@me.com" && password == "123") {
+      setUser("employee");
+      console.log("User is logged in");
+    } else {
+      alert("Invalid credentials");
+    }
+  };
+
+  // handleLogin("demo@gmail.com", 134);
+
+  // useEffect(() => {
+  //   setLocalStorage();
+  // }, [])
+
   return (
     <>
-      <Section1 HeroRightImageData={HeroRightImageData}/>
-      <Section2/>
+      {!user ? <Login handleLogin={handleLogin} /> : ""}
+      {user == 'admin' ? <AdminDashboard /> : <EmployeeDashboard />}
+      {/* <Login/> */}
+      {/* <EmployeeDashboard/> */}
+      {/* <AdminDashboard/> */}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

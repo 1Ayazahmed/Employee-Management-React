@@ -17,17 +17,20 @@ const App = () => {
 
     // handleLogin("demo@gmail.com", 134);
 
-  // useEffect(() => {
-  //   setLocalStorage();   //to store data in local storage
-  // }, [])
+  useEffect(() => {
+    setLocalStorage();   //to store data in local storage
+  }, [])
 
 
   useEffect(() => {
     if (authdata) {
       const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn) {
-        setUser(isLoggedIn.role);
-      }
+      const userData = JSON.parse(isLoggedIn);
+      // if (isLoggedIn) {
+      //   setUser(isLoggedIn.role);
+      // }
+      console.log(userData);
+      
     }
   }, [authdata]);
 

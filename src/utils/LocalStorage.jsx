@@ -1,3 +1,5 @@
+// localStorage.clear();
+
 const employees = [
     {
         "id": 1,
@@ -157,7 +159,7 @@ const employees = [
     },
     {
         "id": 5,
-        "firstName": "Hassan",
+        "firstName": "Abdan",
         "email": "employee5@example.com",
         "password": "123",
         "taskCounts": {

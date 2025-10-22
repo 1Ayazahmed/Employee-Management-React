@@ -13,3 +13,14 @@ background-color: black;
 .all-tasks-main-div::-webkit-scrollbar{
     display: none;
 }
+
+
+.button-style{
+    border-radius: 3px;
+}
+
+
+::selection {
+  color: yellow;
+  background: red;
+}

@@ -15,40 +15,42 @@ const App = () => {
   const authdata = useContext(AuthContext);
   const [isLoggedInUserData, setIsLoggedInUserData] = useState(null);
 
-    // handleLogin("demo@gmail.com", 134);
+  // handleLogin("demo@gmail.com", 134);
 
   useEffect(() => {
-    setLocalStorage();   //to store data in local storage
-  }, [])
+    setLocalStorage(); //to store data in local storage
+  }, []);
+
+
 
 
   useEffect(() => {
-    if (authdata) {
+
       const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedInUserData) {
       const userData = JSON.parse(isLoggedIn);
-      // if (isLoggedIn) {
-      //   setUser(isLoggedIn.role);
-      // }
-      console.log(userData);
-      
+      setUser(userData.role);
+      setIsLoggedInUserData(userData.data)
+
+    
     }
-  }, [authdata]);
+  }, []);
 
   const handleLogin = (email, password) => {
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
       localStorage.setItem("isLoggedIn", JSON.stringify({ role: "admin" }));
     } else if (authdata) {
-      const employee =
-        authdata.employees.find(
-          (emp) => emp.email === email && emp.password === password
-        );
+      const employee = authdata.employees.find(
+        (emp) => emp.email === email && emp.password === password
+      );
       if (employee) {
         setUser("employee");
         setIsLoggedInUserData(employee);
         localStorage.setItem(
           "isLoggedIn",
-          JSON.stringify({ role: "employee" })
+          JSON.stringify({ role: "employee", data:employee })
         );
       }
     } else {
@@ -56,12 +58,14 @@ const App = () => {
     }
   };
 
-
-
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user == "admin" ? <AdminDashboard /> : (user == "employee" ? <EmployeeDashboard isLoggedInUserData={isLoggedInUserData} /> : null)}
+      {user == "admin" ? (
+        <AdminDashboard />
+      ) : user == "employee" ? (
+        <EmployeeDashboard isLoggedInUserData={isLoggedInUserData} />
+      ) : null}
       {/* <Login/> */}
       {/* <EmployeeDashboard/> */}
       {/* <AdminDashboard/> */}

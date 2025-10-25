@@ -24,3 +24,8 @@ background-color: black;
   color: yellow;
   background: red;
 }
+
+
+#task-lists::-webkit-scrollbar{
+    display: none;
+}

@@ -37,7 +37,7 @@ const Login = ({handleLogin}) => {
                 setEmail(e.target.value);
               }}
               required
-              className=" w-full outline-none bg-transparent border-2 py-3 px-12 rounded-xl border-[#24cfa6] placeholder:text-gray-400 shadow-lg shadow-[#24cfa6] focus:p-4 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className=" w-full outline-none bg-transparent border-2 py-2 px-12 rounded-xl border-[#24cfa6] placeholder:text-gray-400 shadow-lg shadow-[#199679] focus:p-3 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
               type="email"
               placeholder="Enter your email"
             />
@@ -47,11 +47,11 @@ const Login = ({handleLogin}) => {
                 setPassword(e.target.value);
               }}
               required
-              className=" w-full outline-none bg-transparent border-2 py-3 px-12 rounded-xl border-[#24cfa6] placeholder:text-gray-400 shadow-lg shadow-[#24cfa6] focus:p-4 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+              className=" w-full outline-none bg-transparent border-2 py-2 px-12 rounded-xl border-[#24cfa6] placeholder:text-gray-400 shadow-lg shadow-[#199679] focus:p-3 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
               type="password"
               placeholder="Enter your password"
             />
-            <button className="mt-7 w-full bg-[#24cfa6] px-12 py-2 rounded-2xl hover:translate-y-2">
+            <button className="mt-7 w-full bg-[#24cfa6] px-12 py-2 rounded-2xl hover:translate-y-2 font-semibold text-xl">
               Login
             </button>
           </form>

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, createContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const CreateTask = () => {
+  const [userData, setUserData] = useContext(AuthContext);
+
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setDescription] = useState("");
   const [assignTo, setAssignTo] = useState("");
@@ -12,23 +15,27 @@ const CreateTask = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setNewTask({  
+    setNewTask({
       taskTitle,
       taskDescription,
-      assignTo,
-    taskType,
-    taskDate,
+      taskType,
+      taskDate,
+      active: false,
+      newTask: true,
+      failed: false,
+      completed: false,
     });
 
-    const data = JSON.parse(localStorage.getItem("employees"));
+    const data = userData;
+
     data.forEach((elem) => {
-      if ( assignTo == elem.firstName) {
+      if (assignTo == elem.firstName) {
         elem.tasks.push(newTask);
-        console.log(elem);
-        
-        
+        elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
       }
     });
+    setUserData(data);
+    console.log(data);
 
     setTaskTitle("");
     setDescription("");
@@ -36,8 +43,6 @@ const CreateTask = () => {
     setTaskType("");
     setTaskDate("");
   };
-
-
 
   return (
     <div className="p-5 bg-[#1C1C1C] mt-10 rounded">

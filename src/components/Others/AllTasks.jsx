@@ -2,7 +2,7 @@ import React,{useContext} from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const AllTasks = () => {
-  const authData = useContext(AuthContext);
+  const [userData,setUserData] = useContext(AuthContext);
 
   return (
     <div className=" all-tasks-main-div p-5 bg-[#1C1C1C] rounded mt-5 text-white">
@@ -17,7 +17,7 @@ const AllTasks = () => {
       <div className="h-screen  "
       id="task-lists">
         {
-          authData.employees.map((user, index) => {
+          userData.map((user, index) => {
             return(
             <div
               key={index}

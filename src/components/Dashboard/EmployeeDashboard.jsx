@@ -3,7 +3,7 @@ import Headers from '../Others/Header'
 import TotalTasks from '../Others/HomeTaskCards/TotalTasks'
 import TaskList from '../TaskList/TaskList'
 
-const EmployeeDashboard = ({props}) => {
+const EmployeeDashboard = (props) => {
   return (
     <div className='p-10 bg-[#1C1C1C] h-screen'>
       <h1 className='text-white'>{props.isLoggedInUserData.id}</h1>

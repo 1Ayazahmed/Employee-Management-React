@@ -12,7 +12,7 @@ import { setLocalStorage } from "./utils/LocalStorage";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const authdata = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
   const [isLoggedInUserData, setIsLoggedInUserData] = useState(null);
 
   // handleLogin("demo@gmail.com", 134);
@@ -25,24 +25,25 @@ const App = () => {
 
 
   useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedInUserData) {
-      const userData = JSON.parse(isLoggedIn);
-      setUser(userData.role);
-      setIsLoggedInUserData(userData.data)
-
-    
+    if (isLoggedIn) {
+      try {
+        const userData = JSON.parse(isLoggedIn);
+        setUser(userData.role);
+        setIsLoggedInUserData(userData.data || null);
+      } catch (err) {
+        console.error("Failed to parse isLoggedIn from localStorage:", err);
+      }
     }
   }, []);
 
   const handleLogin = (email, password) => {
-    if (email == "admin@me.com" && password == "123") {
+    if ((email === "admin@me.com" || email === "admin@example.com") && password === "123") {
       setUser("admin");
       localStorage.setItem("isLoggedIn", JSON.stringify({ role: "admin" }));
-    } else if (authdata) {
-      const employee = authdata.employees.find(
+    } else if (userData) {
+      const employee = userData.find(
         (emp) => emp.email === email && emp.password === password
       );
       if (employee) {
